@@ -74,7 +74,7 @@ class MessagesController < ApplicationController
     end
 
     def message_to_googlehome(message_text)
-      conn = Faraday::Connection.new(:url => 'http://localhost:8091') do |builder|
+      conn = Faraday::Connection.new(:url => 'http://signage.itolab.nitech.ac.jp:8091') do |builder|
         builder.use Faraday::Request::UrlEncoded  # リクエストパラメータを URL エンコードする
         builder.use Faraday::Response::Logger     # リクエストを標準出力に出力する
         builder.use Faraday::Adapter::NetHttp     # Net/HTTP をアダプターに使う
