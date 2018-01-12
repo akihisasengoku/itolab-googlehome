@@ -2,6 +2,7 @@
 
 ```
 docker-compose up
-docker-compose run app rake db:migrate
+docker-compose stop
+docker-compose run web rake db:migrate
 docker-compose up
 ```
