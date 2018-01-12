@@ -1,0 +1,72 @@
+<div class="section no-pad-bot" id="index-banner" style="background-color: white;">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Itolab Home</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">You can make a sound from Itolab's Google Home．</h5>
+      </div>
+      <div class="row center">
+      	<% @places.each do |place| %>
+      		<a href="#<%= place %>" class="btn-large waves-effect waves-light orange"><%= place %></a>
+      	<% end %>
+      </div>
+      <br><br>
+
+    </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<% @places.each do |place| %>
+				<%= render "home_card", place: place %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	.message-item {
+		font-size: 18px;
+		border-radius: 2px;
+		background-color: #fafafa;
+		text-align: center;
+		color: #bdbdbd;
+		padding: 10px;
+		margin: 15px;
+	}
+	.flash-notice {
+		padding:20px;
+		color: white;
+	}
+</style>
+
+<script type="text/javascript">
+	$('#textarea1').trigger('autoresize');
+
+	$(function(){
+		$('a[href^="#"]').click(function(){
+			var speed = 700;
+			var href= $(this).attr("href");
+			var target = $(href == "#" || href == "" ? 'html' : href);
+			var position = target.offset().top;
+			$("html, body").animate({scrollTop:position}, speed, "swing");
+			return false;
+		});
+	});
+
+	$(function() {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({ scrollTop:$(this.hash).offset().top }, "fast");
+		});
+	});
+
+	// $('.message-form').click(function(){
+	// 	var id = $(this).attr("id");
+	// 	console.log(id)
+	// 	var textarea = "textarea-"+id
+
+	// 	var text = $('#textarea').val('');
+	// })
+</script>

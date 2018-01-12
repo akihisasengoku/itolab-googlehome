@@ -1,0 +1,19 @@
+current directory: /Users/akihisa/rails/googlehome/vendor/bundle/ruby/2.5.0/gems/byebug-9.1.0/ext/byebug
+/Users/akihisa/.rbenv/versions/2.5.0/bin/ruby -r ./siteconf20180111-52469-1fkey8f.rb extconf.rb
+creating Makefile
+
+current directory: /Users/akihisa/rails/googlehome/vendor/bundle/ruby/2.5.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/akihisa/rails/googlehome/vendor/bundle/ruby/2.5.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/akihisa/rails/googlehome/vendor/bundle/ruby/2.5.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20180111-52469-3165t9/byebug

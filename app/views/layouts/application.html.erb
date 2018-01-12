@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Googlehome</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+      
+  </head>
+
+  <body style="background-color: #f8f8f8;">
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key} center-align blue lighten-3 flash-notice") %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
