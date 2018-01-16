@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   	def index
 	  	@message = Message.new
-	  	@places = [705, 701, 708]
+	  	@rooms = Room.all
   	end
 end

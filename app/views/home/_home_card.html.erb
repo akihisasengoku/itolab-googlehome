@@ -1,12 +1,12 @@
-<div id="<%= place %>" class="col s12" style="padding-top: 50px;"">
+<div id="<%= room.name %>" class="col s12" style="padding-top: 50px;"">
 	<div class="card">
 	    <div class="card-content">
-	    	<span class="card-title" style="font-weight: 500; font-size: 35px;"><%= place %> GoogleHome</span>
+	    	<span class="card-title" style="font-weight: 500; font-size: 35px;"><%= room.name %> GoogleHome</span>
 	    	<br>
-			<%= render "messages/form_home", place: place %>
+			<%= render "messages/form_home", room: room %>
 	    	<br>
 	    	<div class="messages">
-	        	<% Message.where(place: place).order(created_at: "DESC").first(5).each do |message| %>
+	        	<% room.messages.first(5).reverse.each do |message| %>
 	        		<div class="message-item">
 	    				<div>"<%= message.body %>"</div>
 	    				<div style="text-align: right; font-size: 12px;"><%= message.created_at %></div>

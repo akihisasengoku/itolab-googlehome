@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        message_to_googlehome(@message.body)
+        message_to_googlehome(@message.body, @message.room.ip)
         format.html { redirect_to root_path, notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
@@ -70,25 +70,28 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:body, :place)
+      params.require(:message).permit(:body, :place, :room_id)
     end
 
-    def message_to_googlehome(message_text)
-      conn = Faraday::Connection.new(:url => 'http://signage.itolab.nitech.ac.jp:8091') do |builder|
-        builder.use Faraday::Request::UrlEncoded  # リクエストパラメータを URL エンコードする
-        builder.use Faraday::Response::Logger     # リクエストを標準出力に出力する
-        builder.use Faraday::Adapter::NetHttp     # Net/HTTP をアダプターに使う
-      end
+    def message_to_googlehome(message_text, ip)
+      begin
+        conn = Faraday::Connection.new(:url => 'http://signage.itolab.nitech.ac.jp:8091') do |builder|
+          builder.use Faraday::Request::UrlEncoded  # リクエストパラメータを URL エンコードする
+          builder.use Faraday::Response::Logger     # リクエストを標準出力に出力する
+          builder.use Faraday::Adapter::NetHttp     # Net/HTTP をアダプターに使う
+        end
 
-      conn.post '/google-home-notifier' # POST "color=black" to http://example.com/api/nyan.json
-      conn.post do |req|
-        req.url '/google-home-notifier'
-        req.body = {
-          text: message_text
-        }
-      end
+        conn.post '/google-home-notifier' # POST "color=black" to http://example.com/api/nyan.json
+        conn.post do |req|
+          req.url '/google-home-notifier'
+          req.body = {
+            text: message_text,
+            ip: ip
+          }
+        end
       rescue => e
         # エラー時の処理
         puts e
+      end
     end
 end

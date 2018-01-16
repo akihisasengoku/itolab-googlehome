@@ -6,7 +6,7 @@
     <%= f.input :body, label: 'Japanese message to GoogleHome', wrapper_html: { class: 's12' } %>
   </div>
 
-  <%= f.hidden_field :place, value: place %>
+  <%= f.hidden_field :room_id, value: room.id %>
 
   <div class="form-actions" style="text-align: center">
     <%= f.button :submit, "SUBMIT!!",class: "waves-effect waves-light btn"  %>

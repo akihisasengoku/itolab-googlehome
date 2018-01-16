@@ -6,8 +6,8 @@
         <h5 class="header col s12 light">You can make a sound from Itolab's Google Home．</h5>
       </div>
       <div class="row center">
-      	<% @places.each do |place| %>
-      		<a href="#<%= place %>" class="btn-large waves-effect waves-light orange"><%= place %></a>
+      	<% @rooms.each do |room| %>
+      		<a href="#<%= room.name %>" class="btn-large waves-effect waves-light orange"><%= room.name %></a>
       	<% end %>
       </div>
       <br><br>
@@ -18,8 +18,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col s8 offset-s2">
-			<% @places.each do |place| %>
-				<%= render "home_card", place: place %>
+			<% @rooms.each do |room| %>
+				<%= render "home_card", room: room %>
 			<% end %>
 		</div>
 	</div>
