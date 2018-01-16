@@ -87,5 +87,8 @@ class MessagesController < ApplicationController
           text: message_text
         }
       end
+      rescue => e
+        # エラー時の処理
+        puts e
     end
 end
