@@ -4,18 +4,17 @@ module Sns::Twitter extend self
   def test
     @client = config
     @username = ENV['TWITTER_GET_USER_NAME']
-    @post_ip = ENV['GOOGLE_END_POINT']
 
     # 特定ユーザのtimelineを件数(1件)指定して取得
     @client.user_timeline(@username, { count: 1 } ).each do |timeline|
-      text = @client.status(timeline.id).text
+      text = @client.status(timeline.id).text.gsub(/(\s)/,"")
       puts "#{text} #{Time.now}"
       if last_tweet = Tweet.all.last
         if text != last_tweet.body
-          post_to_googlehome(text, @post_ip)
+          post_to_googlehome(text)
         end
       else
-        post_to_googlehome(text, @post_ip)
+        post_to_googlehome(text)
       end
     end
   end
@@ -30,11 +29,10 @@ module Sns::Twitter extend self
       end
     end
 
-    def post_to_googlehome(text, ip)
+    def post_to_googlehome(text)
       message = Message.create(body: text, room_id: 1)
       Tweet.create(body: text)
-      Google::Googlehome.post(text, ip)
-      Google::Googlehome.post(text, ip)
+      Google::Googlehome.post(text, ENV['MY_GOOGLE_IP'])
     end
 
 end
