@@ -2,6 +2,9 @@ FROM ruby:2.5.0
 ENV LANG C.UTF-8
 # for MySQL
 RUN apt-get update -qq && apt-get install -y build-essential mysql-client nodejs
+RUN apt-get install -y cron
+RUN echo '*/5 * * * * root /path/to/your_command' >> /etc/crontab
+CMD ["cron", "-f"]
 
 RUN gem install bundler
 

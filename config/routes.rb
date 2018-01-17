@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tweets
   resources :rooms
   resources :messages
   root to: 'home#index'

@@ -6,7 +6,7 @@
 			<%= render "messages/form_home", room: room %>
 	    	<br>
 	    	<div class="messages">
-	        	<% room.messages.first(5).reverse.each do |message| %>
+	        	<% room.messages.last(5).reverse.each do |message| %>
 	        		<div class="message-item">
 	    				<div>"<%= message.body %>"</div>
 	    				<div style="text-align: right; font-size: 12px;"><%= message.created_at %></div>

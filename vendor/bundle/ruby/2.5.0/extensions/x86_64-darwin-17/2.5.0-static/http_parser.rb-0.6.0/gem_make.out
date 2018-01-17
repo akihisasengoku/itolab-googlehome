@@ -1,0 +1,16 @@
+current directory: /Users/akihisa/rails/itolab-googlehome/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+/Users/akihisa/.rbenv/versions/2.5.0/bin/ruby -r ./siteconf20180117-19751-kwhc7o.rb extconf.rb
+creating Makefile
+
+current directory: /Users/akihisa/rails/itolab-googlehome/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" clean
+
+current directory: /Users/akihisa/rails/itolab-googlehome/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR="
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.bundle
+
+current directory: /Users/akihisa/rails/itolab-googlehome/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ruby_http_parser.bundle ./.gem.20180117-19751-114tq5e
