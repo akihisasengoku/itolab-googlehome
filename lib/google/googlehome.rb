@@ -2,7 +2,7 @@ module Google::Googlehome extend self
 
   def post(message_text, ip)
     begin
-      conn = Faraday::Connection.new(:url => 'http://signage.itolab.nitech.ac.jp:8091/google-home-notifier') do |builder|
+      conn = Faraday::Connection.new(:url => ENV['GOOGLE_END_POINT']) do |builder|
         builder.use Faraday::Request::UrlEncoded  # リクエストパラメータを URL エンコードする
         builder.use Faraday::Response::Logger     # リクエストを標準出力に出力する
         builder.use Faraday::Adapter::NetHttp     # Net/HTTP をアダプターに使う

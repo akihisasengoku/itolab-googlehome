@@ -3,15 +3,14 @@ module Sns::Twitter extend self
 
   def test
     @client = config
-    @username = "zmuztatsu26"
-    @post_ip = "133.68.108.57"
+    @username = ENV['TWITTER_GET_USER_NAME']
+    @post_ip = ENV['GOOGLE_END_POINT']
 
     # 特定ユーザのtimelineを件数(1件)指定して取得
     @client.user_timeline(@username, { count: 1 } ).each do |timeline|
       text = @client.status(timeline.id).text
+      puts "#{text} #{Time.now}"
       if last_tweet = Tweet.all.last
-        puts text
-        puts Time.now
         if text != last_tweet.body
           post_to_googlehome(text, @post_ip)
         end
@@ -24,16 +23,18 @@ module Sns::Twitter extend self
   private
     def config
       Twitter::REST::Client.new do |config|
-        config.consumer_key    = 'iaQQeGSADKb84R0xw4HnMbKYW'
-        config.consumer_secret = 'ddIwcasZ2lneZECTlvVzSsK7iSLUD4znUYLCOS7kiP3jI54bYK'
-        config.access_token    = '2424673471-GECq396dbrYYOUdXw2PYHETsaYB6o5UsAUJl6wx'
-        config.access_token_secret = 'IrkhA4WcmQGimXTyzJ2rK2g2iFVo4lUNGw4xBFnajyLvO'
+        config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+        config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+        config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+        config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
       end
     end
 
     def post_to_googlehome(text, ip)
-      tweet = Tweet.create(body: text)
-      Google::Googlehome.post(tweet.body, ip)
+      message = Message.create(body: text, room_id: 1)
+      Tweet.create(body: text)
+      Google::Googlehome.post(text, ip)
+      Google::Googlehome.post(text, ip)
     end
 
 end
